@@ -1,7 +1,7 @@
 console.log("[DB] Attempting Conenction..");
 var mongoose = require('mongoose');
 
-var db_conn = mongoose.createConnection(config.db.tasks_url);
+var db_conn = mongoose.createConnection(config.db.tasks);
 
 console.log("[Mongo Bulk Action] Attempting Conenction..");
 db_conn.on('error', console.error.bind(console, '[Mongo Bulk Action] Error: '));

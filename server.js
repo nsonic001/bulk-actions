@@ -22,8 +22,21 @@ if (env_var == "staging") {
 // Setup Configs //
 ///////////////////
 global.config = require('./configs/' + env_var + '.js');
+//- extend common config
 let common_config = require('./configs/common.js');
 __.extend(global.config, common_config);
+//- extends secrets
+const secret_config = require('./configs/secrets.js');
+
+console.log("------secret_config------", secret_config);
+
+if (env_var === 'production') {
+  __.extend(global.config, secret_config.production);
+} else {
+  __.extend(global.config, secret_config.staging);
+  console.log("-------global.config----", global.config.db);
+}
+
 // Database Config files
 require('./configs/db');
 
